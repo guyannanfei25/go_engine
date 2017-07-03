@@ -1,0 +1,60 @@
+{
+  "log_info": {
+    "dir": "/tmp",
+    "name": "log.info",
+    "level": 1
+  },
+
+  "gc_info": {
+    "max_mem_m": 2048,
+    "check_interval_s": 20
+  },
+
+  "pid_info": {
+    "file": "/tmp/go_engine.pid"
+  },
+
+  "proc_info": {
+    "max_proc": -1
+  },
+
+  "producer": {
+    "type": "nsq",
+    "read_timeout_s": 10,
+
+    "nsq_consumer_conf": {
+      "topic": "test",
+      "channel": "test",
+      "lookupds": [
+        "localhost:4161"
+      ],
+      "buf_size": 0,
+      "max_in_flight": 100,
+      "dail_timeout_s": 10,
+      "read_timeout_s": 60,
+      "write_timeout_s": 30,
+      "lookupd_poll_interval_s": 20
+    }
+  },
+
+  "consumers": {
+    "tick_s": 20,
+    "framework": {
+      "down_consumers": [
+        "Echoer"
+      ],
+      "name": "framework",
+      "concurrency": 3,
+      "msgMaxSize": 2
+    },
+
+    "Echoer": {
+      "down_consumers": [
+      ],
+      "name": "echoer",
+      "concurrency": 3,
+      "msgMaxSize": 2
+    }
+  }
+
+}
