@@ -35,6 +35,7 @@ func (e *Echoer) Tick() {
     logger.Infof("now %dth echoer get [%d] items\n", e.id, e.num)
 }
 
-func (e *Echoer) Close() {
+func (e *Echoer) Close() error {
     logger.Infof("%dth echoer close, finish process [%d] items\n", e.id, e.num)
+    return nil
 }
